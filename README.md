@@ -175,23 +175,23 @@ Copy `backend/.env.example` to `backend/.env` and adjust if needed.
 
 ## Deployment
 
-Deploy to production with Vercel (frontend) and Render (backend):
+Deploy to production with Vercel (frontend) and Render (backend).
 
-- **Start Here**: [DEPLOYMENT_INDEX.md](DEPLOYMENT_INDEX.md) - Complete documentation index
-- **Quick Start**: [QUICK_DEPLOY.md](QUICK_DEPLOY.md) - Deploy in 10 minutes
-- **Checklist**: [DEPLOYMENT_CHECKLIST.md](DEPLOYMENT_CHECKLIST.md) - Step-by-step guide
-- **Full Guide**: [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) - Detailed instructions with troubleshooting
+**See [DEPLOY.md](DEPLOY.md) for complete deployment guide.**
 
-Configuration files included:
-- `render.yaml` - Render deployment config (FFmpeg + yt-dlp auto-installed)
-- `vercel.json` - Vercel deployment config
+Quick overview:
+1. Deploy backend to Render (auto-installs FFmpeg + yt-dlp)
+2. Deploy frontend to Vercel
+3. Configure CORS
+4. Test and launch
 
 **Features:**
-- ✅ FFmpeg automatically installed (works on free tier)
+- ✅ FFmpeg automatically installed
 - ✅ yt-dlp always uses latest version
-- ✅ Persistent storage for database
-- ✅ WebSocket support for progress updates
-- ✅ CORS properly configured
+- ✅ Free tier compatible
+- ✅ 10-minute deployment
+
+Configuration files: `render.yaml`, `vercel.json`
 
 ---
 
@@ -284,7 +284,7 @@ For a short REST and WebSocket overview, see **[docs/API.md](docs/API.md)**.
 
 yt-dlp is updated frequently for site support. The deployment is configured to always use the latest version.
 
-**For production:** Redeploy monthly or when downloads fail to get the latest yt-dlp version. See [YTDLP_UPDATES.md](YTDLP_UPDATES.md) for details.
+**For production:** Redeploy monthly or when downloads fail to get the latest yt-dlp version. See [DEPLOY.md](DEPLOY.md#maintenance) for details.
 
 **For local development:** Upgrade with `pip install -U yt-dlp`
 
