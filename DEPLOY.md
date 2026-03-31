@@ -50,10 +50,10 @@ Complete guide to deploy Universal Video Downloader to Vercel (frontend) and Ren
 Render auto-detects `render.yaml` with these settings:
 
 - **Name**: `universal-video-downloader-backend`
-- **Runtime**: Python
-- **Root Directory**: `backend` (set via `rootDir` in render.yaml)
-- **Build Command**: Installs FFmpeg + Python dependencies
-- **Start Command**: Runs uvicorn server
+- **Runtime**: Docker
+- **Root Directory**: `backend`
+- **Dockerfile**: `backend/Dockerfile`
+- **FFmpeg**: Installed in Docker image
 
 ### 1.3 Add Environment Variables
 
@@ -173,14 +173,17 @@ Visit your Vercel URL: `https://your-app.vercel.app`
 
 ### FFmpeg
 
-**Status**: ✅ Automatically installed
+**Status**: ✅ Automatically installed via Docker
 
-The `render.yaml` configuration installs FFmpeg during build:
+The `backend/Dockerfile` installs FFmpeg during the Docker image build:
 
-```yaml
-buildCommand: |
-  apt-get update && apt-get install -y ffmpeg
-  cd backend && pip install -r requirements.txt
+```dockerfile
+FROM python:3.11-slim
+
+# Install FFmpeg
+RUN apt-get update && \
+    apt-get install -y ffmpeg && \
+    rm -rf /var/lib/apt/lists/*
 ```
 
 **Verify installation**: Check Render build logs for `Setting up ffmpeg...`
@@ -373,26 +376,21 @@ Upgrade Vercel if:
 
 ### render.yaml
 
-Backend deployment configuration:
+Backend deployment configuration using Docker:
 
 ```yaml
 services:
   - type: web
     name: universal-video-downloader-backend
-    runtime: python
+    runtime: docker
     plan: free
-    rootDir: backend  # All commands run from backend/ folder
-    buildCommand: |
-      apt-get update && apt-get install -y ffmpeg
-      pip install -r requirements.txt
-    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    rootDir: backend
+    dockerfilePath: ./Dockerfile
     envVars:
       - key: PORT
         value: 8000
       - key: BIND
         value: 0.0.0.0
-      - key: PYTHON_VERSION
-        value: 3.11.0
       - key: MAX_CONCURRENT
         value: 2
       - key: QUEUE_MAX_SIZE
@@ -403,6 +401,32 @@ services:
       name: video-storage
       mountPath: /opt/render/project/src/storage
       sizeGB: 1
+```
+
+### Dockerfile
+
+Docker image with FFmpeg pre-installed:
+
+```dockerfile
+FROM python:3.11-slim
+
+# Install FFmpeg
+RUN apt-get update && \
+    apt-get install -y ffmpeg && \
+    rm -rf /var/lib/apt/lists/*
+
+# Set working directory
+WORKDIR /app
+
+# Copy and install dependencies
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy application
+COPY . .
+
+# Run server
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
 ```
 
 ### vercel.json
