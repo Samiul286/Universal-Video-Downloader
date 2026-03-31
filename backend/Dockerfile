@@ -9,6 +9,7 @@ RUN apt-get update && \
 WORKDIR /app
 
 # Copy requirements and install Python dependencies
+# Updated: 2026-03-31 - Force yt-dlp update
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
