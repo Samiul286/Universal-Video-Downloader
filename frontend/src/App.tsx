@@ -336,7 +336,9 @@ function App() {
               <input
                 type="checkbox"
                 checked={allSelected}
-                ref={(el) => el && (el.indeterminate = someSelected && !allSelected)}
+                ref={(el) => {
+                  if (el) el.indeterminate = someSelected && !allSelected;
+                }}
                 onChange={(e) => selectAll(e.target.checked)}
                 aria-label="Select all"
               />
