@@ -1,0 +1,319 @@
+.app {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.app h1 {
+  margin-bottom: 1.5rem;
+}
+
+.card {
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  border: 1px solid #333;
+  border-radius: 8px;
+}
+
+.card label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.card input[type="url"] {
+  width: 100%;
+  max-width: 400px;
+  padding: 0.5rem;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+  box-sizing: border-box;
+}
+
+.card select {
+  display: block;
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+  min-width: 200px;
+}
+
+.url-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  margin-top: 0.5rem;
+}
+
+.sample-url-btn {
+  color: #8af;
+  background: transparent;
+  border: 1px solid #5a9;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.sample-url-btn:hover:not(:disabled) {
+  background: rgba(136, 170, 255, 0.12);
+}
+
+.sample-url-hint {
+  margin: 0.5rem 0 0;
+  font-size: 0.85rem;
+  color: #888;
+}
+
+.card button {
+  margin-right: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.error {
+  background: #4a1a1a;
+  color: #f88;
+  padding: 0.75rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.error button {
+  background: transparent;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+.job-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.job-list li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #333;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.job-list .actions {
+  margin-left: auto;
+}
+
+.job-list .actions button {
+  margin-left: 0.25rem;
+}
+
+/* Downloads summary (completed / in progress / failed counts) */
+.downloads-summary {
+  margin: 0 0 0.75rem;
+  font-size: 0.9rem;
+  color: #aaa;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+.downloads-summary-completed {
+  color: #68d391;
+  font-weight: 500;
+}
+.downloads-summary-active {
+  color: #63b3ed;
+}
+.downloads-summary-failed {
+  color: #fc8181;
+}
+
+/* Job list item layout */
+.job-list-item {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.35rem;
+}
+.job-list-item--card {
+  padding: 0.75rem 0;
+  gap: 0.5rem;
+}
+.job-list-item-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+.job-list-item-check {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  padding-top: 0.25rem;
+}
+.job-list-item-check input {
+  margin: 0;
+  cursor: pointer;
+}
+.job-list-item-thumb {
+  flex-shrink: 0;
+  width: 120px;
+  height: 68px;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #2d2d2d;
+}
+.job-list-item-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.job-list-item-thumb-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #333 0%, #222 100%);
+}
+.job-list-item-title-wrap {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+.job-copy-link-icon {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  margin: 0;
+  background: none;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  border-radius: 4px;
+}
+.job-copy-link-icon:hover {
+  color: #63b3ed;
+  background: rgba(99, 179, 237, 0.12);
+}
+.job-copy-link-icon:focus-visible {
+  outline: 1px solid #63b3ed;
+}
+.job-copy-link-check {
+  color: #68d391;
+  font-size: 12px;
+  font-weight: 700;
+}
+.job-list-item .job-title {
+  flex: 1;
+  min-width: 0;
+  font-size: 0.95rem;
+  line-height: 1.3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.job-list-item-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+.job-list-item-bar-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 1;
+  min-width: 0;
+}
+.job-list-item-bar-wrap .progress-bar {
+  flex: 1;
+  min-width: 80px;
+}
+.job-list-item-bar-wrap .job-percent {
+  flex-shrink: 0;
+  font-size: 0.9rem;
+  font-variant-numeric: tabular-nums;
+  color: #aaa;
+}
+.job-list-item-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem;
+}
+.job-list-item-actions button {
+  margin: 0;
+}
+.job-list-item-remove {
+  margin-left: auto;
+}
+.job-error-reason {
+  font-size: 0.8rem;
+  color: #fc8181;
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.job-status {
+  font-size: 0.85rem;
+  text-transform: capitalize;
+}
+.job-status--completed {
+  color: #68d391;
+}
+.job-status--failed {
+  color: #fc8181;
+}
+.job-status--downloading {
+  color: #63b3ed;
+}
+.job-percent {
+  font-size: 0.9rem;
+  font-variant-numeric: tabular-nums;
+  color: #aaa;
+}
+
+/* Progress bar */
+.progress-bar {
+  height: 8px;
+  min-width: 120px;
+  max-width: 100%;
+  background: #2d2d2d;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.progress-bar-fill {
+  height: 100%;
+  background: #63b3ed;
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+.progress-bar--completed .progress-bar-fill {
+  background: #68d391;
+  width: 100% !important;
+}
+.progress-bar--failed {
+  background: #3d2a2a;
+}
+.progress-bar--failed .progress-bar-fill {
+  background: #fc8181;
+  width: 0% !important;
+}
+.progress-bar--indeterminate .progress-bar-fill {
+  width: 40% !important;
+  animation: progress-indeterminate 1.2s ease-in-out infinite;
+}
+@keyframes progress-indeterminate {
+  0%, 100% { transform: translateX(-100%); }
+  50% { transform: translateX(200%); }
+}

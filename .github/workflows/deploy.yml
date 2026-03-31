@@ -1,0 +1,24 @@
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Deploy to Vercel
+        run: echo "Vercel auto-deploys on push to main"
+        
+      - name: Deploy to Render
+        run: echo "Render auto-deploys on push to main"
+        
+      - name: Deployment Complete
+        run: |
+          echo "✅ Frontend: Vercel (auto-deploy)"
+          echo "✅ Backend: Render (auto-deploy)"
+          echo "Both platforms will automatically deploy when connected to this repository"

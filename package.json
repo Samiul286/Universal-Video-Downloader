@@ -1,0 +1,23 @@
+{
+  "name": "universal-video-downloader",
+  "version": "0.1.0",
+  "description": "Universal video downloader from URL. YouTube, Vimeo, TikTok, 1000+ sites. Paste link, pick quality, save. FastAPI + React, self-hosted, no cloud. Open source yt-dlp web interface.",
+  "keywords": [
+    "universal-video-downloader",
+    "video-downloader",
+    "youtube-downloader",
+    "yt-dlp",
+    "yt-dlp-web",
+    "fastapi",
+    "react",
+    "self-hosted",
+    "open-source",
+    "download-videos",
+    "paste-url",
+    "local-first",
+    "rest-api",
+    "playlist-download"
+  ],
+  "license": "MIT",
+  "private": true
+}
