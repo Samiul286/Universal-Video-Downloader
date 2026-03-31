@@ -51,6 +51,7 @@ Render auto-detects `render.yaml` with these settings:
 
 - **Name**: `universal-video-downloader-backend`
 - **Runtime**: Python
+- **Root Directory**: `backend` (set via `rootDir` in render.yaml)
 - **Build Command**: Installs FFmpeg + Python dependencies
 - **Start Command**: Runs uvicorn server
 
@@ -300,7 +301,7 @@ Render free tier: 1GB disk
 
 Check usage:
 1. Render Dashboard → Shell
-2. Run: `df -h /opt/render/project/src/backend/storage`
+2. Run: `df -h /opt/render/project/src/storage`
 
 If disk is full:
 - Delete old download records
@@ -380,10 +381,11 @@ services:
     name: universal-video-downloader-backend
     runtime: python
     plan: free
+    rootDir: backend  # All commands run from backend/ folder
     buildCommand: |
       apt-get update && apt-get install -y ffmpeg
-      cd backend && pip install -r requirements.txt
-    startCommand: cd backend && uvicorn main:app --host 0.0.0.0 --port $PORT
+      pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
     envVars:
       - key: PORT
         value: 8000
@@ -396,10 +398,10 @@ services:
       - key: QUEUE_MAX_SIZE
         value: 100
       - key: DB_PATH
-        value: /opt/render/project/src/backend/storage/downloader.db
+        value: /opt/render/project/src/storage/downloader.db
     disk:
       name: video-storage
-      mountPath: /opt/render/project/src/backend/storage
+      mountPath: /opt/render/project/src/storage
       sizeGB: 1
 ```
 

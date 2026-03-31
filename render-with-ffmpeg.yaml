@@ -7,14 +7,17 @@ services:
     runtime: python
     plan: free  # Change to 'starter' for paid tier ($7/month, always-on)
     
+    # Root directory: All commands run from backend/ folder
+    rootDir: backend
+    
     # Build command: Install FFmpeg first, then Python dependencies
     # FFmpeg is needed for merging video+audio streams
     buildCommand: |
       apt-get update && apt-get install -y ffmpeg
-      cd backend && pip install -r requirements.txt
+      pip install -r requirements.txt
     
     # Start command: Run uvicorn server
-    startCommand: cd backend && uvicorn main:app --host 0.0.0.0 --port $PORT
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
     
     # Environment variables
     envVars:
@@ -29,7 +32,7 @@ services:
       - key: QUEUE_MAX_SIZE
         value: 100
       - key: DB_PATH
-        value: /opt/render/project/src/backend/storage/downloader.db
+        value: /opt/render/project/src/storage/downloader.db
       # Add FRONTEND_URL in Render dashboard after deploying frontend
       # - key: FRONTEND_URL
       #   value: https://your-app.vercel.app
@@ -38,7 +41,7 @@ services:
     # Free tier: 1GB, Paid tier: up to 100GB
     disk:
       name: video-storage
-      mountPath: /opt/render/project/src/backend/storage
+      mountPath: /opt/render/project/src/storage
       sizeGB: 1  # Increase on paid tier if needed
 
 # Optional: Health check configuration
